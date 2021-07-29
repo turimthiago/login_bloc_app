@@ -1,4 +1,4 @@
-# login_bloc_app
+# :lock: Login Bloc App
 
 A Flutter project about know how to use Bloc patter in authentication flow.
 
