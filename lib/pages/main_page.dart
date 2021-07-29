@@ -32,9 +32,13 @@ class _MainPageState extends State<MainPage> {
               ],
             ));
           }
-          return Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
+          return Container(
+            color: Colors.blue,
+            child: Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.white,
+              ),
             ),
           );
         },

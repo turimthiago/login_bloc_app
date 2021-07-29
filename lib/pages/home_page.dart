@@ -13,27 +13,43 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final authBloc = BlocProvider.of<AuthenticationBloc>(context);
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Welcome, ${user.email}'),
-              TextButton(
-                style: ButtonStyle(
-                  foregroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
-                ),
-                onPressed: () {
-                  authBloc.add(UserLoggedOut());
-                },
-                child: Text('Logout'),
-              )
-            ],
-          ),
-        ),
+        body: Container(
+      color: Colors.blue,
+      width: double.infinity,
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Card(
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Welcome',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    user.email,
+                    style:
+                        TextStyle(fontSize: 30, fontWeight: FontWeight.normal),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.blue),
+                    ),
+                    onPressed: () {
+                      authBloc.add(UserLoggedOut());
+                    },
+                    child: Text('Logout'),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
       ),
-    );
+    ));
   }
 }

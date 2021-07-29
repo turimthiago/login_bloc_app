@@ -7,7 +7,10 @@ import 'package:login_bloc_app/blocs/login/login_state.dart';
 import 'package:login_bloc_app/services/authentication_service.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +18,7 @@ class LoginPage extends StatelessWidget {
     final authBloc = BlocProvider.of<AuthenticationBloc>(context);
     return Scaffold(
       body: Container(
+        color: Colors.blue,
         alignment: Alignment.center,
         child: BlocProvider<LoginBloc>(
           create: (context) => LoginBloc(
@@ -27,7 +31,9 @@ class LoginPage extends StatelessWidget {
               builder: (context, state) {
                 if (state is LoginLoading) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
                   );
                 }
                 return Container(
@@ -43,6 +49,7 @@ class LoginPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
+                                  controller: _emailController,
                                   decoration: InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.email,
@@ -55,6 +62,8 @@ class LoginPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
+                                  obscureText: true,
+                                  controller: _passwordController,
                                   decoration: InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.lock,
@@ -73,8 +82,8 @@ class LoginPage extends StatelessWidget {
                                           BlocProvider.of<LoginBloc>(context)
                                               .add(
                                                   LoginInWithEmailButtonPressed(
-                                            email: "turimthiago@gmail.com",
-                                            password: "123",
+                                            email: _emailController.text,
+                                            password: _passwordController.text,
                                           ));
                                         },
                                   child: Text(
