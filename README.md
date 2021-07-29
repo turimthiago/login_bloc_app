@@ -1,6 +1,6 @@
 # login_bloc_app
 
-A new Flutter project.
+A Flutter project about know how to use Bloc patter in authentication flow.
 
 ## Getting Started
 
